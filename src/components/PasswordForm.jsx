@@ -1,11 +1,10 @@
-// PasswordForm.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const PasswordForm = () => {
   const [password, setPassword] = useState('');
-  const [savedpassword, setsavedPassword] = useState('');
+  const [savedPassword, setSavedPassword] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleSavePassword = () => {
     axios.post('/.netlify/functions/savePassword', { password })
@@ -18,10 +17,12 @@ const PasswordForm = () => {
         // パスワード保存の失敗処理
       });
   };
+
   const showSavePassword = () => {
     axios.get('/.netlify/functions/getSavedPassword')
       .then(savedPasswordResponse => {
-        setsavedPassword(savedPasswordResponse.data.savedPassword);
+        setSavedPassword(savedPasswordResponse.data.savedPassword);
+        setIsPasswordVisible(true); // パスワードが取得されたら表示する
       })
       .catch(error => {
         console.error('Error fetching saved password:', error);
@@ -38,7 +39,7 @@ const PasswordForm = () => {
       <button onClick={handleSavePassword}>Save Password</button>
       <h2>Saved Password:</h2>
       <button onClick={showSavePassword}>Show Saved Password</button>
-      <p>{savedpassword}</p>
+      {isPasswordVisible && <p>{savedPassword}</p>}
     </div>
   );
 };

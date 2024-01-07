@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const PasswordForm = () => {
   const [password, setPassword] = useState('');
+  const [savedpassword, setsavedPassword] = useState('');
 
   const handleSavePassword = () => {
     axios.post('/.netlify/functions/savePassword', { password })
@@ -20,7 +21,7 @@ const PasswordForm = () => {
   const showSavePassword = () => {
     axios.get('/.netlify/functions/getSavedPassword')
       .then(savedPasswordResponse => {
-        setPassword(savedPasswordResponse.data.savedPassword);
+        setsavedPassword(savedPasswordResponse.data.savedPassword);
       })
       .catch(error => {
         console.error('Error fetching saved password:', error);
@@ -37,7 +38,7 @@ const PasswordForm = () => {
       <button onClick={handleSavePassword}>Save Password</button>
       <h2>Saved Password:</h2>
       <button onClick={showSavePassword}>Show Saved Password</button>
-      <p>{password}</p>
+      <p>{savedpassword}</p>
     </div>
   );
 };

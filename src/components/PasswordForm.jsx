@@ -11,17 +11,19 @@ const PasswordForm = () => {
       .then(response => {
         console.log(response.data.message);
         // パスワード保存の成功処理
-        axios.get('/.netlify/functions/getSavedPassword')
-          .then(savedPasswordResponse => {
-            setPassword(savedPasswordResponse.data.savedPassword);
-          })
-          .catch(error => {
-            console.error('Error fetching saved password:', error);
-          });
       })
       .catch(error => {
         console.error('Error saving password:', error);
         // パスワード保存の失敗処理
+      });
+  };
+  const showSavePassword = () => {
+    axios.get('/.netlify/functions/getSavedPassword')
+      .then(savedPasswordResponse => {
+        setPassword(savedPasswordResponse.data.savedPassword);
+      })
+      .catch(error => {
+        console.error('Error fetching saved password:', error);
       });
   };
 
@@ -34,6 +36,7 @@ const PasswordForm = () => {
       />
       <button onClick={handleSavePassword}>Save Password</button>
       <h2>Saved Password:</h2>
+      <button onClick={showSavePassword}>Show Saved Password</button>
       <p>{password}</p>
     </div>
   );

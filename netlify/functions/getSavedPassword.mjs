@@ -3,7 +3,7 @@
 exports.handler = async () => {
   try {
     // ここで保存されたパスワードを取得する処理を実行する
-    const savedPassword = 'どんまいｗ'; // 仮の保存されたパスワード
+    const savedPassword = 'wwww'; // 仮の保存されたパスワード
     
     return {
       statusCode: 200,

@@ -8,7 +8,7 @@ const PasswordForm = () => {
   const [savedPassword, setSavedPassword] = useState('');
 
   const handleSavePassword = () => {
-    axios.post('/.netlify/functions/savePassword', { password })
+    axios.post('/.netlify/functions/getSavedPassword', { password })
       .then(response => {
         console.log(response.data.message);
         // パスワード保存の成功処理

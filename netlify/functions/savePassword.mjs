@@ -9,7 +9,7 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Password saved successfully'{savedPassword} }),
+      body: JSON.stringify({ message: 'Password saved successfully'),
     };
   } catch (error) {
     return {

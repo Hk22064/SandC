@@ -1,15 +1,15 @@
 // functions/savePassword.js
 
+let savedPassword = ''; // パスワードを保存する変数
+
 exports.handler = async (event) => {
   try {
     const { password } = JSON.parse(event.body);
-    const savedPassword = password; 
-    // ここでパスワードを保存するデータベースやストレージなどに送信する処理を実行する
+    savedPassword = password; // パスワードを保存
 
     return {
       statusCode: 200,
       body: JSON.stringify({ message: 'Password saved successfully' }),
-      body: JSON.stringify({ savedPassword }),
     };
   } catch (error) {
     return {
@@ -17,4 +17,11 @@ exports.handler = async (event) => {
       body: JSON.stringify({ message: 'Error saving password' }),
     };
   }
+};
+
+exports.getSavedPassword = async () => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ savedPassword }), // 保存されたパスワードを返す
+  };
 };

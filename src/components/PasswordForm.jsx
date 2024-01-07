@@ -20,7 +20,7 @@ const PasswordForm = () => {
   };
 
   const showSavedPassword = () => {
-    axios.get('/.netlify/functions/getSavedPassword')
+    axios.get('/.netlify/functions/savePassword')
       .then(savedPasswordResponse => {
         console.log(savedPasswordResponse.data.savedPassword);
         setSavedPassword(savedPasswordResponse.data.savedPassword);

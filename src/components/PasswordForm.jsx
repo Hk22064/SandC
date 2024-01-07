@@ -7,7 +7,7 @@ const PasswordForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleSavePassword = () => {
-    axios.post('/.netlify/functions/getsavePassword', { password })
+    axios.post('/.netlify/functions/savePassword', { password })
       .then(response => {
         console.log(response.data.message);
         // パスワード保存の成功処理
@@ -19,7 +19,7 @@ const PasswordForm = () => {
   };
 
   const showSavePassword = () => {
-    axios.get('/.netlify/functions/savedPassword')
+    axios.get('/.netlify/functions/getSavedPassword')
       .then(savedPasswordResponse => {
         setSavedPassword(savedPasswordResponse.data.savedPassword);
         setIsPasswordVisible(true); // パスワードが取得されたら表示する

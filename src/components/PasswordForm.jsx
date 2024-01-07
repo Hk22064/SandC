@@ -19,16 +19,16 @@ const PasswordForm = () => {
   };
 
   const showSavePassword = () => {
-    axios.get('/.netlify/functions/getSavedPassword')
+    axios.get('/.netlify/functions/savedPassword')
       .then(savedPasswordResponse => {
-        console.log(savedPasswordResponse.data.savedPassword); // データの確認
         setSavedPassword(savedPasswordResponse.data.savedPassword);
         setIsPasswordVisible(true); // パスワードが取得されたら表示する
       })
       .catch(error => {
-        console.error('Error fetching saved password:', error); // エラーの確認
+        console.error('Error fetching saved password:', error);
       });
   };
+
   return (
     <div>
       <input

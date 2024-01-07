@@ -19,7 +19,7 @@ const PasswordForm = () => {
   };
 
   const showSavePassword = () => {
-    axios.get('/.netlify/functions/getSavedPassword')
+    axios.get('/.netlify/functions/savedPassword')
       .then(savedPasswordResponse => {
         setSavedPassword(savedPasswordResponse.data.savedPassword);
         setIsPasswordVisible(true); // パスワードが取得されたら表示する
